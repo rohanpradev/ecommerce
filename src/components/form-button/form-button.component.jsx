@@ -1,10 +1,14 @@
 import React from 'react';
 import './form-button.styles.scss';
 
-const FormButton = ({ children, ...otherProps }) => (
-  <button className='form-button' {...otherProps}>
+const FormButton = ({ children, isGoogleSignIn, ...otherProps }) => (
+  <button className={`${isGoogleSignIn ? 'google-sign-in' : ''} form-button`} {...otherProps}>
     {children}
   </button>
 );
+
+FormButton.defaultProps = {
+  isGoogleSignIn: false,
+};
 
 export default FormButton;
