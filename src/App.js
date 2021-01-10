@@ -3,6 +3,8 @@ import './App.scss';
 import { Route, Switch, Link } from 'react-router-dom';
 import Homepage from './pages/homepage/homepage.component';
 import Shop from './pages/shop/shop.component';
+import Header from './components/header/header.component';
+import SignInSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 
 const NotFoundpage = () => (
   <div className='not-found'>
@@ -13,11 +15,15 @@ const NotFoundpage = () => (
 
 function App() {
   return (
-    <Switch>
-      <Route path='/' exact component={Homepage} />
-      <Route path='/shop' component={Shop} />
-      <Route component={NotFoundpage} />
-    </Switch>
+    <>
+      <Header />
+      <Switch>
+        <Route path='/' exact component={Homepage} />
+        <Route path='/shop' component={Shop} />
+        <Route path='/signup' component={SignInSignUpPage} />
+        <Route component={NotFoundpage} />
+      </Switch>
+    </>
   );
 }
 

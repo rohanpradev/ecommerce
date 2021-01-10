@@ -4,10 +4,11 @@ body {
 }
 
 .not-found {
-  min-height: 95vh;
+  height: calc(100vh - 250px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: red;
+  font-size: 22px;
 }
