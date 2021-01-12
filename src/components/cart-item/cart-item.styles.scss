@@ -1,0 +1,16 @@
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+
+  .small {
+    height: 60px;
+    width: 60px;
+    margin-right: 10px;
+  }
+
+  .item-details {
+    display: flex;
+    flex-direction: column;
+  }
+}
