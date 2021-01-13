@@ -3,6 +3,7 @@ import './cart.styles.scss';
 import FormButton from '../form-button/form-button.component';
 import CartItem from '../cart-item/cart-item.component';
 import { connect } from 'react-redux';
+import { selectCartItems } from '../../redux/cart/cart.selectors';
 
 const Cart = ({ items }) => {
   return (
@@ -17,6 +18,6 @@ const Cart = ({ items }) => {
   );
 };
 
-const mapStateToProps = ({ cart: { cartItems } }) => ({ items: cartItems });
+const mapStateToProps = (state) => ({ items: selectCartItems(state) });
 
 export default connect(mapStateToProps)(Cart);
