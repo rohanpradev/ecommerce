@@ -1,13 +1,16 @@
 import React from 'react';
 import './App.scss';
 import { Route, Switch, Link, Redirect } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from './redux/user/user.selector';
+import { connect } from 'react-redux';
+import { setCurrentUser } from './redux/user/user.actions';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import Homepage from './pages/homepage/homepage.component';
 import Shop from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import SignInSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
-import { connect } from 'react-redux';
-import { setCurrentUser } from './redux/user/user.actions';
+import CheckoutPage from './pages/checkout/checkout.component';
 
 const NotFoundpage = () => (
   <div className='not-found'>
@@ -42,6 +45,7 @@ class App extends React.Component {
           <Route path='/' exact component={Homepage} />
           <Route path='/shop' component={Shop} />
           <Route exact path='/signup' render={() => (currentUser ? <Redirect to='/' /> : <SignInSignUpPage />)} />
+          <Route exact path='/checkout' component={CheckoutPage} />
           <Route component={NotFoundpage} />
         </Switch>
       </>
@@ -53,7 +57,7 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ user }) => ({ currentUser: user.currentUser });
+const mapStateToProps = createStructuredSelector({ currentUser: selectCurrentUser });
 
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
