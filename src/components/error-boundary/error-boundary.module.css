@@ -1,0 +1,17 @@
+.image {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url('https://i.imgur.com/QIxIKBH.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  z-index: 1;
+}
+
+.description {
+  position: absolute;
+  z-index: 2;
+  top: 80%;
+  font-size: 20px;
+}
