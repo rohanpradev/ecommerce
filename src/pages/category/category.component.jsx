@@ -4,16 +4,25 @@ import CollectionItem from '../../components/collection-item/collection-item.com
 import { selectCollection } from '../../redux/shop/shop.selector';
 import { connect } from 'react-redux';
 
-const CategoryPage = ({ collection: { items, title } }) => (
-  <div className='category'>
-    <h2 className='title'>{title}</h2>
-    <div className='items'>
-      {items.map((item) => (
-        <CollectionItem key={item.id} item={item} />
-      ))}
+const CategoryPage = (props) => {
+  const { collection } = props;
+
+  if (!collection) {
+    return <div>No Data</div>;
+  }
+
+  const { items, title } = collection;
+  return (
+    <div className='category'>
+      <h2 className='title'>{title}</h2>
+      <div className='items'>
+        {items.map((item) => (
+          <CollectionItem key={item.id} item={item} />
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const mapStateToProps = (state, ownProps) => ({
   collection: selectCollection(ownProps.match.params.categoryId)(state),
